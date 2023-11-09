@@ -1,18 +1,14 @@
 import { test, expect } from '@playwright/test';
 
-test('has title', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
-
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
-});
-
-test('get started link', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
-
-  // Click the get started link.
-  await page.getByRole('link', { name: 'Get started' }).click();
-
-  // Expects page to have a heading with the name of Installation.
-  await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
+test('test', async ({ page }) => {
+  test.setTimeout(120000)
+  await page.goto('https://www.24mx.ie/');
+  await page.getByRole('link', { name: 'Motocross Gear', exact: true }).click();
+  await page.getByRole('link', { name: 'Water Bottles' }).click();
+  await page.getByRole('link', { name: '24MX Track Water Bottle Personalised €9.45 -37% €14.99 199 Reviews 24MX Track Water Bottle' }).click();
+  await page.getByRole('button', { name: 'Add to cart' }).click();
+  await page.getByRole('link', { name: 'Proceed to checkout' }).click();
+  await page.getByRole('button', { name: 'Edit' }).click();
+  await page.getByRole('button', { name: 'Remove' }).click();
+  await page.locator('div').filter({ hasText: /^YOUR CART IS EMPTY Continue shopping cart$/ }).click();
 });
